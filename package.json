@@ -4,11 +4,11 @@
   "description": "Logging Service for Angular 2",
   "author": "bteryek",
   "license": "MIT",
-  "main": "./index.js",
-  "types": "./index.d.ts",
+  "main": "index.js",
+  "typings": "./index.d.ts",
   "scripts": {
     "test": "karma start --single-run",
-    "build": "tsc --declaration"
+    "prepublish": "tsc --declaration"
   },
   "private": true,
   "dependencies": {
