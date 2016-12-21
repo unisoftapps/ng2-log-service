@@ -3,13 +3,15 @@
     "compilerOptions": {
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
+        "sourceMap": true,
+        "declaration": true,
         "target": "ES5",
         "module": "commonjs",
-        "types": [
-            "jasmine",
-            "node"
-        ]
+        "outDir": "dist"
     },
+    "files": [
+        "index.ts"
+    ],
     "exclude": [
         "node_modules"
     ]
