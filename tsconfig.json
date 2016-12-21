@@ -10,7 +10,7 @@
         "outDir": "dist"
     },
     "files": [
-        "index.ts"
+        "src/index.ts"
     ],
     "exclude": [
         "node_modules",
