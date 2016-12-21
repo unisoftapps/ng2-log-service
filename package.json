@@ -5,7 +5,7 @@
   "author": "bteryek",
   "license": "MIT",
   "scripts": {
-    "test": "karma start"
+    "test": "karma start --single-run"
   },
   "private": true,
   "dependencies": {
