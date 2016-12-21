@@ -5,11 +5,9 @@
   "author": "bteryek",
   "license": "MIT",
   "main": "index.js",
-  "typings": "./index.d.ts",
+  "types": "./index.d.ts",
   "scripts": {
     "test": "karma start --single-run",
-    "prepublish": "tsc",
-    "postinstall": "tsc",
     "build": "tsc"
   },
   "private": true,
