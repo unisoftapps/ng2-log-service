@@ -33,6 +33,6 @@
     "typescript": "~2.0.3",
     "@types/core-js": "^0.9.34",
     "@types/node": "^6.0.51",
-    "@types/jasmine": "^2.5.37", 
+    "@types/jasmine": "^2.5.37"
   }
 }
