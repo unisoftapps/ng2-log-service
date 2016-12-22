@@ -34,65 +34,68 @@ export class ConsoleListener implements ILogListener {
 ```
 
 ### 2. Register Your Listener(s) in your App Root Module ###
-    
-	// LogService Specific Imports
-	// Include the LogModule
-	import { LogModule } from 'ng2-log-service';
-	// Import Your Console Listeners you want to register
-	import { ConsoleListener } from './console-listener';
-	
-	@NgModule({
-	  declarations: [
-	    AppComponent
-	  ],
-	  imports: [
-	    BrowserModule,
-	    FormsModule,
-	    HttpModule,
-	    LogModule.forRoot(new ConsoleListener())
-	  ],
-	  providers: [],
-	  bootstrap: [AppComponent]
-	})
-	export class AppModule { }
 
+
+```typescript    
+// LogService Specific Imports
+// Include the LogModule
+import { LogModule } from 'ng2-log-service';
+// Import Your Console Listeners you want to register
+import { ConsoleListener } from './console-listener';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpModule,
+    LogModule.forRoot(new ConsoleListener())
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
 
 ### 3. Use the Log Service ###
 
-	import { logProvider, LogService, LogLevel, ILogMessage } from 'ng2-log-service';
+```typescript
+import { logProvider, LogService, LogLevel, ILogMessage } from 'ng2-log-service';
 
-	@Component({
-	  selector: 'app-landing-page',
-	  templateUrl: './landing-page.html',
-	  styleUrls: ['./landing-page.scss'],
-	  providers: [logProvider] // Inject a log service instance
-	})
-	export class LandingPage implements OnInit {
-	  
-	  constructor(private logService: LogService) {}
+@Component({
+  selector: 'app-landing-page',
+  templateUrl: './landing-page.html',
+  styleUrls: ['./landing-page.scss'],
+  providers: [logProvider] // Inject a log service instance
+})
+export class LandingPage implements OnInit {
+  
+  constructor(private logService: LogService) {}
 
-	ngOnInit() {
+ngOnInit() {
 
-		this.logService.namespace = 'LandingPage'; // specify a namespace for the logs
-		this.logService.log('Landing page log', LogLevel.All);
-	    this.logService.info('Landing page info');
-	    this.logService.debug('Landing page debug');
-	    this.logService.warn('Landing page warn');
-	    this.logService.error('Landing page error');
-		this.logService.fatal('Landing page fatal error');
+	this.logService.namespace = 'LandingPage'; // specify a namespace for the logs
+	this.logService.log('Landing page log', LogLevel.All);
+    this.logService.info('Landing page info');
+    this.logService.debug('Landing page debug');
+    this.logService.warn('Landing page warn');
+    this.logService.error('Landing page error');
+	this.logService.fatal('Landing page fatal error');
 
-		// Deferred execution of your log. Will not execute unless a listener is subscribed.
-		this.logService.logAsync(LogLevel.Warn, (): ILogMessage => {
-			// do some work
-			// must return an ILogMessage object
-			return {
-				message: 'hello world!'+this.translate.currentLang,
-				obj: {dummy: 'data'}
-			};
-	    });
+	// Deferred execution of your log. Will not execute unless a listener is subscribed.
+	this.logService.logAsync(LogLevel.Warn, (): ILogMessage => {
+		// do some work
+		// must return an ILogMessage object
+		return {
+			message: 'hello world!'+this.translate.currentLang,
+			obj: {dummy: 'data'}
+		};
+    });
 
-	}
-
+}
+```
 ## Licensing
 
 This software is licensed with the MIT license.
