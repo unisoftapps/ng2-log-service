@@ -4,37 +4,59 @@ Angular 2 Logging Service thats follows the Observer pattern. Log listeners list
 
 To run the example tests, issue the following commands:
 
+## Installation ##
+
+```
+npm install --save unisoftapps/ng2-log-service
+```
+
 ## Example Usage ##
 
-### Create a Class that Implements ILogListener ###
+### 1. Create a Class that Implements ILogListener ###
 	
-	import { ILogListener } from 'ng2-log-service';
-
-    @Injectable()
-    export class ConsoleListener implements ILogListener {
-        namespace = ALL_LOGS; // what namespace you want to listen for
-        level = LogLevel.All; // log level
+	import { Injectable } from '@angular/core';
+	import { ILogListener, ALL_LOGS, LogLevel, ILogMessage } from 'ng2-log-service';
 	
-		onLog(namespace: string, level: LogLevel, logMessage: ILogMessage) {
-        	// do what you want here
-			console.log(namespace, level, logMessage);
-    	}
+	@Injectable()
+	export class ConsoleListener implements ILogListener {
+	    
+	    namespace = ALL_LOGS; // what namespace you want to listen for
+	    level = LogLevel.All; // log level
+	
+	    onLog(namespace: string, level: LogLevel, logMessage: ILogMessage) {
+	        // do what you want here
+	        console.log(namespace, level, logMessage);
+	    }
+	
+	}
 
-    }
-
-### Register Your Listener(s) in your App Root Module ###
+### 2. Register Your Listener(s) in your App Root Module ###
     
-    import { LogModule } from 'ng2-log-service';
+	// LogService Specific Imports
+	// Include the LogModule
+	import { LogModule } from 'ng2-log-service';
+	// Import Your Console Listeners you want to register
+	import { ConsoleListener } from './console-listener';
+	
+	@NgModule({
+	  declarations: [
+	    AppComponent
+	  ],
+	  imports: [
+	    BrowserModule,
+	    FormsModule,
+	    HttpModule,
+	    LogModule.forRoot(new ConsoleListener())
+	  ],
+	  providers: [],
+	  bootstrap: [AppComponent]
+	})
+	export class AppModule { }
 
-    @NgModule({
-        imports: [
-            LogModule.forRoot(new ConsoleListener())
-        ]
-    })
 
-### Use the Log Service ###
+### 3. Use the Log Service ###
 
-	import { LogService, logProvider, LogLevel, ILogMessage } from 'ng2-log-service';
+	import { logProvider, LogService, LogLevel, ILogMessage } from 'ng2-log-service';
 
 	@Component({
 	  selector: 'app-landing-page',
@@ -67,16 +89,6 @@ To run the example tests, issue the following commands:
 	    });
 
 	}
-
-
-```
-npm install karma-typescript
-cd node_modules/karma-typescript/example-project@angular2
-npm install
-npm test
-```
-
-The example unit tests should now run in Karma and html test coverage should be created in the folder `coverage` in the project root.
 
 ## Licensing
 
