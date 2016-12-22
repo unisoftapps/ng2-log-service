@@ -8,10 +8,16 @@
         "declaration": true,
         "experimentalDecorators": true,
         "sourceMap": true,
-        "outDir": "dist"
+        "outDir": "dist",
+        "typeRoots": [
+            "node_modules/@types"
+        ]
     },
     "files": [
         "src/index.ts"
+    ],
+    "types": [
+      "core-js"
     ],
     "exclude": [
         "node_modules"
