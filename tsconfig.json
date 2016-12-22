@@ -1,24 +1,16 @@
 {
     "compileOnSave": false,
     "compilerOptions": {
-        "module": "es6",
-        "moduleResolution": "node",
+        "module": "commonjs",
         "target": "ES5",
-        "lib": ["es5", "dom"],
         "emitDecoratorMetadata": true,
         "declaration": true,
         "experimentalDecorators": true,
         "sourceMap": true,
-        "outDir": "dist",
-        "typeRoots": [
-            "node_modules/@types"
-        ]
+        "outDir": "dist"
     },
     "files": [
         "src/index.ts"
-    ],
-    "types": [
-      "core-js"
     ],
     "exclude": [
         "node_modules"
