@@ -1,13 +1,16 @@
 # Node generated files
-node_modules
+node_modules/
 npm-debug.log
+
 
 # OS generated files
 Thumbs.db
 .DS_Store
-/coverage
 
 # Ignored files
+dist/
+coverage/
 *.js
 *.map
 *.d.ts
+*.log

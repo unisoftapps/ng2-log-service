@@ -1,22 +1,18 @@
 {
     "compileOnSave": false,
     "compilerOptions": {
+        "module": "commonjs",
+        "target": "ES5",
         "emitDecoratorMetadata": true,
+        "declaration": true,
         "experimentalDecorators": true,
         "sourceMap": true,
-        "declaration": true,
-        "target": "ES5",
-        "module": "commonjs",
-        "outDir": "dist",
-        "typeRoots": [
-            "./node_modules/@types"
-        ]
+        "outDir": "dist"
     },
     "files": [
         "src/index.ts"
     ],
     "exclude": [
-        "node_modules",
-        "dist"
+        "node_modules"
     ]
 }
