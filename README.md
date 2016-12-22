@@ -10,6 +10,9 @@ To run the example tests, issue the following commands:
 npm install --save unisoftapps/ng2-log-service
 ```
 
+## Full Documentation ##
+[View Complete Documentation](docs/complete.md)
+
 ## Example Usage ##
 
 ### 1. Create a Class that Implements ILogListener ###
