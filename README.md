@@ -20,12 +20,12 @@ npm install --save unisoftapps/ng2-log-service
 ```typescript
 	
 import { Injectable } from '@angular/core';
-import { ILogListener, ALL_LOGS, LogLevel, ILogMessage } from 'ng2-log-service';
+import { ILogListener, ALL, LogLevel, ILogMessage } from 'ng2-log-service';
 
 @Injectable()
 export class ConsoleListener implements ILogListener {
     
-    namespace = ALL_LOGS; // what namespace you want to listen for
+    namespace = ALL; // what namespace you want to listen for
     level = LogLevel.All; // log level
 
     onLog(namespace: string, level: LogLevel, logMessage: ILogMessage) {
@@ -39,8 +39,7 @@ export class ConsoleListener implements ILogListener {
 ### 2. Register Your Listener(s) in your App Root Module ###
 
 
-```typescript    
-// LogService Specific Imports
+```typescript
 // Include the LogModule
 import { LogModule } from 'ng2-log-service';
 // Import Your Console Listeners you want to register
