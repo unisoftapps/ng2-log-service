@@ -1,10 +1,10 @@
 ///<reference path="./../../typings/globals/jasmine/index.d.ts"/>
 
 import { inject } from '@angular/core/testing';
-import { namespaceIsValid, logMessageIsValid, ILogEvent, LogLevel, ILogListener, ILogMessage, LogObserverRx } from '../';
+import { namespaceIsValid, logMessageIsValid, ILogEvent, LogLevel, ILogListener, ILogMessage, LogObserverRx, ALL } from '../';
 
 class Listener implements ILogListener {
-    namespace: string = 'test';
+    namespace: string = ALL;
     level: LogLevel = LogLevel.All
 
     onLog(namespace: string, level: LogLevel, logMessage: ILogMessage) {
@@ -14,13 +14,20 @@ class Listener implements ILogListener {
 }
 
 
-describe('LogObserverRx tests', () => {
+// describe('LogObserverRx tests', () => {
     
-    let listener = new Listener();
+//     let listener = new Listener();
 
-    let logObserverRx = new LogObserverRx();
-    logObserverRx.register(listener);
+//     let logObserverRx = new LogObserverRx();
+//     logObserverRx.register(listener);
 
-    console.log('inside here!');
+//     logObserverRx.onDidLog(ALL, LogLevel.All, () : ILogMessage => {
+//         return {
+//             message: 'Test Message',
+//             obj: null
+//         }
+//     });
 
-})
+//     console.log('inside here!');
+
+//})
