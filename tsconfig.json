@@ -4,9 +4,6 @@
         "module": "commonjs",
         "target": "ES5",
         "lib": ["dom", "es6"],
-        "typeRoots": [
-            "node_modules/@types"
-        ],
         "emitDecoratorMetadata": true,
         "declaration": true,
         "experimentalDecorators": true,
