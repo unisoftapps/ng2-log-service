@@ -1,8 +1,6 @@
 # ng2-log-service
 
-Angular 2 Logging Service thats follows the Observer pattern. Log listeners listen to log events and are notified when they occur.
-
-To run the example tests, issue the following commands:
+Angular 2 Logging Service. Log listeners listen to log events and are notified when they occur.
 
 ## Installation ##
 
@@ -87,7 +85,7 @@ ngOnInit() {
 	this.logService.fatal('Landing page fatal error');
 
 	// Deferred execution of your log. Will not execute unless a listener is subscribed.
-	this.logService.logAsync(LogLevel.Warn, (): ILogMessage => {
+	this.logService.logDeferred(LogLevel.Warn, (): ILogMessage => {
 		// do some work
 		// must return an ILogMessage object
 		return {
