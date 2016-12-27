@@ -27,7 +27,8 @@
     "test": "node ./node_modules/karma/bin/karma start --single-run",
     "test-watch": "node ./node_modules/karma/bin/karma start",
     "tsc": "tsc",
-    "postinstall": "npm run tsc"
+    "postinstall": "npm run tsc",
+    "prepublish": "npm run tsc"
   },
   "private": true,
   "peerDependencies": {
