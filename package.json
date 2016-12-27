@@ -1,6 +1,6 @@
 {
   "name": "ng2-log-service",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Logging Service for Angular 2",
   "repository": {
     "type": "git",
@@ -21,8 +21,8 @@
     "url": "https://github.com/unisoftapps/ng2-log-service/issues"
   },
   "homepage": "https://github.com/unisoftapps/ng2-log-service",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "main": "dist/ng2-log-service.js",
+  "typings": "dist/ng2-log-service.d.ts",
   "scripts": {
     "test": "node ./node_modules/karma/bin/karma start --single-run",
     "test-watch": "node ./node_modules/karma/bin/karma start",

@@ -1,9 +1,7 @@
 ///<reference path="./../typings/globals/jasmine/index.d.ts"/>
 
-import { ILogListener, ILogMessage } from './';
 import { TestBed, async, inject } from '@angular/core/testing';
-import { LogObserverService, ALL, LogLevel } from './';
-
+import { ILogListener, ILogMessage, LogObserverService, ALL, LogLevel } from './ng2-log-service';
 
 class GlobalLogListener implements ILogListener {
   didGetNotified: boolean = false; 

@@ -1,6 +1,6 @@
 import { AsyncSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { ILogObserver, ILogEvent, ILogListener, LogLevel, namespaceIsValid } from './';
+import { ILogObserver, ILogEvent, ILogListener, LogLevel, namespaceIsValid } from './ng2-log-service';
 
 let FUZZY_CHARACTER: string = '*';
 let INDEX_NOT_FOUND = -1;

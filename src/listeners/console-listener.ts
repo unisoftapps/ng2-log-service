@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {  ILogListener, ILogMessage, LogLevel, ALL } from '../';
+import {  ILogListener, ILogMessage, LogLevel, ALL } from '../ng2-log-service';
 
 export interface IConsoleListenerPrefix {
     () : string;

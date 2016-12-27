@@ -1,7 +1,7 @@
 ///<reference path="./../typings/globals/jasmine/index.d.ts"/>
 
 import { inject } from '@angular/core/testing';
-import { namespaceIsValid, logMessageIsValid, ILogEvent, LogLevel } from './';
+import { namespaceIsValid, logMessageIsValid, ILogEvent, LogLevel } from './ng2-log-service';
 
 describe('Functions: namespaceIsValid', () => {
     it('namespaceIsValid(null) returns false ...', () => {

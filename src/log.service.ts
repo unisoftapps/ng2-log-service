@@ -1,5 +1,5 @@
 import { Observable, AsyncSubject } from 'rxjs';
-import { ILog, ILogEvent, LogObserverService, LogLevel } from './';
+import { ILog, ILogEvent, LogObserverService, LogLevel } from './ng2-log-service';
 import { Injectable, EventEmitter, Inject } from '@angular/core';
 
 @Injectable()
