@@ -17,7 +17,7 @@ import { Injectable } from '@angular/core';
 import { ILogListener, ALL, LogLevel, ILogMessage } from 'ng2-log-service';
 
 @Injectable()
-export class ConsoleListener implements ILogListener {
+export class MyCustomListener implements ILogListener {
 
     // Required. What namespace you want to listen for
     namespace = ALL;
@@ -113,3 +113,83 @@ My logMessage object would look like this:
     obj: { data: [1,2,3] }
 }
 ```
+
+## Registering Listeners with LogModule
+
+You must register your Log Listeners inside your Application's root module. 
+In this example, we will show how you would register the bundled ConsoleListener along with a user defined listener.
+
+```typescript
+// Include the LogModule and Bundled ConsoleListener
+import { LogModule, ConsoleListener } from 'ng2-log-service';
+
+// Include your own listener
+import { MyCustomListener } from './listeners/my-custom-listener';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpModule,
+    // You can register as many listeners as you want here
+    LogModule.forRoot(new ConsoleListener(), new MyCustomListener())
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
+## Use the Log Service
+
+Now that everything is wired up, start using the LogService.
+
+### How to use the LogService inside of a Component
+
+Make sure you include the ```logServiceProvider``` inside your component. This will give you a new instance of a Log Service. This is done so you can have different namespaces defined within your application. You could inject a logServiceProvider into a module so everything in that module will share the same LogService instance.
+
+```typescript
+import { logServiceProvider, LogService, LogLevel, ILogMessage } from 'ng2-log-service';
+
+@Component({
+  selector: 'app-landing-page',
+  templateUrl: './landing-page.html',
+  styleUrls: ['./landing-page.scss'],
+  providers: [logServiceProvider] // Inject the logServiceProvider
+})
+export class LandingPage implements OnInit {
+  
+  constructor(private logService: LogService) {}
+
+    ngOnInit() {
+        
+        // specify a namespace for the logs
+    	this.logService.namespace = 'LandingPage'; 
+    	
+    	// All of these methods support passing in any object as a second parameter
+    	this.logService.log('Landing page log', { data: 'optional' });
+        this.logService.info('Landing page info');
+        this.logService.debug('Landing page debug');
+        this.logService.warn('Landing page warn');
+        this.logService.error('Landing page error');
+    	this.logService.fatal('Landing page fatal error');
+    
+    	// Deferred execution of your log. Will not execute unless a listener is subscribed.
+    	// If you need to do any 'heavy lifting' before logging a message, use logDeferred.
+    	// This will only execute if there is at least on subscriber.
+    	this.logService.logDeferred(LogLevel.Warn, (): ILogMessage => {
+    		// do some work
+    		// must return an ILogMessage object
+    		return {
+    			message: 'hello world!'+this.translate.currentLang,
+    			obj: {dummy: 'data'}
+    		};
+        });
+
+    }
+}
+```
+

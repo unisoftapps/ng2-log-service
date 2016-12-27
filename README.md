@@ -39,9 +39,8 @@ export class ConsoleListener implements ILogListener {
 
 ```typescript
 // Include the LogModule
-import { LogModule } from 'ng2-log-service';
+import { LogModule, ConsoleListener } from 'ng2-log-service';
 // Import Your Console Listeners you want to register
-import { ConsoleListener } from './console-listener';
 
 @NgModule({
   declarations: [
@@ -62,38 +61,44 @@ export class AppModule { }
 ### 3. Use the Log Service ###
 
 ```typescript
-import { logProvider, LogService, LogLevel, ILogMessage } from 'ng2-log-service';
+import { logServiceProvider, LogService, LogLevel, ILogMessage } from 'ng2-log-service';
 
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.html',
   styleUrls: ['./landing-page.scss'],
-  providers: [logProvider] // Inject a log service instance
+  providers: [logServiceProvider] // Inject the logServiceProvider
 })
 export class LandingPage implements OnInit {
   
   constructor(private logService: LogService) {}
 
-ngOnInit() {
+    ngOnInit() {
+        
+        // specify a namespace for the logs
+    	this.logService.namespace = 'LandingPage'; 
+    	
+    	// All of these methods support passing in any object as a second parameter
+    	this.logService.log('Landing page log', { data: 'optional' });
+        this.logService.info('Landing page info');
+        this.logService.debug('Landing page debug');
+        this.logService.warn('Landing page warn');
+        this.logService.error('Landing page error');
+    	this.logService.fatal('Landing page fatal error');
+    
+    	// Deferred execution of your log. Will not execute unless a listener is subscribed.
+    	// If you need to do any 'heavy lifting' before logging a message, use logDeferred.
+    	// This will only execute if there is at least on subscriber.
+    	this.logService.logDeferred(LogLevel.Warn, (): ILogMessage => {
+    		// do some work
+    		// must return an ILogMessage object
+    		return {
+    			message: 'hello world!'+this.translate.currentLang,
+    			obj: {dummy: 'data'}
+    		};
+        });
 
-	this.logService.namespace = 'LandingPage'; // specify a namespace for the logs
-	this.logService.log('Landing page log', LogLevel.All);
-    this.logService.info('Landing page info');
-    this.logService.debug('Landing page debug');
-    this.logService.warn('Landing page warn');
-    this.logService.error('Landing page error');
-	this.logService.fatal('Landing page fatal error');
-
-	// Deferred execution of your log. Will not execute unless a listener is subscribed.
-	this.logService.logDeferred(LogLevel.Warn, (): ILogMessage => {
-		// do some work
-		// must return an ILogMessage object
-		return {
-			message: 'hello world!'+this.translate.currentLang,
-			obj: {dummy: 'data'}
-		};
-    });
-
+    }
 }
 ```
 ## Licensing
