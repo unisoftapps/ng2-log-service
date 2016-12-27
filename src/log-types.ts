@@ -1,3 +1,5 @@
+import { ALL } from './log-observer.service';
+
 export enum LogLevel {
   All = 1,
   Debug = 2,
@@ -28,10 +30,10 @@ export interface ILogMessager {
   messageSent(message: string, payload?: any);
 }
 
-export interface ILogListener {
-  namespace: string;
+export abstract class ILogListener {
+  namespace: string = ALL;
   level: LogLevel;
-  onLog(namespace: string, level: LogLevel, logMessage: ILogMessage);
+  abstract onLog(namespace: string, level: LogLevel, logMessage: ILogMessage);
 }
 
 export interface ILogObserver {

@@ -1,3 +1,5 @@
+///<reference path="./../typings/globals/jasmine/index.d.ts"/>
+
 import { inject } from '@angular/core/testing';
 import { namespaceIsValid, logMessageIsValid, ILogEvent, LogLevel } from './';
 

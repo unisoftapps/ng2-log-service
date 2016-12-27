@@ -4,7 +4,7 @@ import { ILogObserver, ILogEvent, ILogListener, LogLevel, namespaceIsValid } fro
 
 let FUZZY_CHARACTER: string = '*';
 let INDEX_NOT_FOUND = -1;
-export let ALL_LOGS: string = FUZZY_CHARACTER;
+export let ALL: string = FUZZY_CHARACTER;
 
 
 @Injectable()
@@ -16,7 +16,7 @@ export class LogObserverService implements ILogObserver {
   constructor(args: Array<ILogListener> = [] ) {
 
     this.registry = {}
-    this.registry[ALL_LOGS] = [];
+    this.registry[ALL] = [];
 
     // register listeners
     for(var i in args) {

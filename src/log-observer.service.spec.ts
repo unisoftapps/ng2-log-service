@@ -1,16 +1,16 @@
-import { ILogListener, ILogMessage } from './';
-/* tslint:disable:no-unused-variable */
+///<reference path="./../typings/globals/jasmine/index.d.ts"/>
 
+import { ILogListener, ILogMessage } from './';
 import { TestBed, async, inject } from '@angular/core/testing';
-import { LogObserverService, ALL_LOGS, LogLevel } from './';
+import { LogObserverService, ALL, LogLevel } from './';
 
 
 class GlobalLogListener implements ILogListener {
   didGetNotified: boolean = false; 
-  namespace = ALL_LOGS;
+  namespace = ALL;
   level = LogLevel.All;  
   onLog(namespace: string, level: LogLevel, logMessage: ILogMessage) {
-    console.log('GlobalLogListener got it!', logMessage.message);
+    //console.log('GlobalLogListener got it!', logMessage.message);
     this.didGetNotified = true;
   }
 } 
@@ -20,7 +20,7 @@ class DummyNamespaceListenerA implements ILogListener {
   namespace = 'dummynamespace';
   level = LogLevel.All;  
   onLog(namespace: string, level: LogLevel, logMessage: ILogMessage) {
-    console.log('DummyNamespaceListenerA got it!', logMessage.message);
+    //console.log('DummyNamespaceListenerA got it!', logMessage.message);
     this.didGetNotified = true;
   }
 } 
@@ -30,7 +30,7 @@ class DummyNamespaceListenerB implements ILogListener {
   namespace = 'dummynamespace';
   level = LogLevel.All;  
   onLog(namespace: string, level: LogLevel, logMessage: ILogMessage) {
-    console.log('DummyNamespaceListenerB got it!', logMessage.message);
+    //console.log('DummyNamespaceListenerB got it!', logMessage.message);
     this.didGetNotified = true;
   }
 } 
@@ -40,7 +40,7 @@ class DummyFuzzyNamespaceListener implements ILogListener {
   namespace = 'dummyname*';
   level = LogLevel.All;  
   onLog(namespace: string, level: LogLevel, logMessage: ILogMessage) {
-    console.log('DummyFuzzyNamespaceListener got it!', logMessage.message);
+    //console.log('DummyFuzzyNamespaceListener got it!', logMessage.message);
     this.didGetNotified = true;
   }
 }
@@ -50,7 +50,7 @@ class DummyErrorOnlyListener implements ILogListener {
   level = LogLevel.Error;
   namespace = 'dummyname';
   onLog(namespace: string, level: LogLevel, logMessage: ILogMessage) {
-    console.log('DummyErrorOnlyListener got it!', logMessage.message);
+    //console.log('DummyErrorOnlyListener got it!', logMessage.message);
     this.didGetNotified = true;
   }
 }

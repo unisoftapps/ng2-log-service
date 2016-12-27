@@ -10,7 +10,6 @@ Thumbs.db
 # Ignored files
 dist/
 coverage/
-*.js
 *.map
 *.d.ts
 *.log

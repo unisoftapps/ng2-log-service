@@ -18,7 +18,7 @@ export class LogService implements ILog {
     return this._ns;
   }
 
-  public logAsync(level: LogLevel, action: ILogEvent) {    
+  public logDeferred(level: LogLevel, action: ILogEvent) {    
     this.logObserver.onDidLog(this._ns, level, action);
   };
 
