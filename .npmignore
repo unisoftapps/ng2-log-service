@@ -6,10 +6,15 @@ npm-debug.log
 Thumbs.db
 .DS_Store
 
+
 # Ignore files
 *.d.ts
 *.log
 *.tgz
+
+typings/
+src/
+typings/
 
 !index.d.ts
 !index.ref.d.ts
