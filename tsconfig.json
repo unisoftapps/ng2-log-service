@@ -2,6 +2,7 @@
     "compileOnSave": false,
     "compilerOptions": {
         "module": "commonjs",
+        "moduleResolution": "node",
         "target": "ES5",
         "lib": ["dom", "es6"],
         "emitDecoratorMetadata": true,
@@ -14,6 +15,7 @@
         "src/index.ts"
     ],
     "exclude": [
-        "node_modules"
+        "node_modules",
+        "dist"
     ]
 }
