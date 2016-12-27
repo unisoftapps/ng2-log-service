@@ -5,7 +5,7 @@ Angular 2 Logging Service. Log listeners listen to log events and are notified w
 ## Installation ##
 
 ```
-npm install --save unisoftapps/ng2-log-service
+npm install --save ng2-log-service
 ```
 
 ## Full Documentation ##
