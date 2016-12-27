@@ -21,7 +21,7 @@ import { Injectable } from '@angular/core';
 import { ILogListener, ALL, LogLevel, ILogMessage } from 'ng2-log-service';
 
 @Injectable()
-export class ConsoleListener implements ILogListener {
+export class MyCustomListener implements ILogListener {
     
     namespace = ALL; // what namespace you want to listen for
     level = LogLevel.All; // log level
@@ -38,9 +38,10 @@ export class ConsoleListener implements ILogListener {
 
 
 ```typescript
-// Include the LogModule
+// Include the LogModule and bundled Console Listener
 import { LogModule, ConsoleListener } from 'ng2-log-service';
-// Import Your Console Listeners you want to register
+// Import Your Log Listeners you want to register
+import { MyCustomListener } from './listeners/my-custom-listener';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,7 @@ import { LogModule, ConsoleListener } from 'ng2-log-service';
     BrowserModule,
     FormsModule,
     HttpModule,
-    LogModule.forRoot(new ConsoleListener())
+    LogModule.forRoot(new ConsoleListener(), new MyCustomListener())
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -101,6 +102,8 @@ export class LandingPage implements OnInit {
     }
 }
 ```
+Every time you log with the logService, it will find any registered subscribers and notify them by calling the ```onLog``` method.
+
 ## Licensing
 
 This software is licensed with the MIT license.

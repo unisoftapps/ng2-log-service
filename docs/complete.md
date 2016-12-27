@@ -2,6 +2,8 @@
 
 The Log Service dispatches log events to Log Listeners that are configured to listen to event(s) that match its configuration. **It is up to the LogListener to do something with the log event!** This framework does not actually log anything for you to the console or otherwise automatically. 
 
+We do however provide a ConsoleListener you can use out of the box to log to the console window.
+
 1. You register log listener(s) that are configured to respond to certain log events
 2. When a LogService method is called, it checks against the list of registered log listeners
 3. If a match is found, It will notify that listener of the log event
@@ -62,7 +64,7 @@ Examples of some valid namespaces
 
 ```
 namespace = ALL; // equivalent to '*'
-namespace = 'api';
+namespace = 'api'; // only 'api', nothing more, nothing less
 namespace = 'api:authentication';
 namespace = 'api*; // matches api and api:authentication, etc
 namespace = 'api:auth*'; // matches 'api:auth', 'api:authentication', 'api:authorize'
@@ -151,6 +153,7 @@ Now that everything is wired up, start using the LogService.
 
 Make sure you include the ```logServiceProvider``` inside your component. This will give you a new instance of a Log Service. This is done so you can have different namespaces defined within your application. You could inject a logServiceProvider into a module so everything in that module will share the same LogService instance.
 
+
 ```typescript
 import { logServiceProvider, LogService, LogLevel, ILogMessage } from 'ng2-log-service';
 
@@ -193,3 +196,4 @@ export class LandingPage implements OnInit {
 }
 ```
 
+Every time you log with the logService, it will find any registered subscribers and notify them by calling the ```onLog``` method.

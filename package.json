@@ -1,9 +1,26 @@
 {
   "name": "ng2-log-service",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Logging Service for Angular 2",
-  "author": "bteryek",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/unisoftapps/ng2-log-service.git"
+  },
+  "keywords": [
+    "angular",
+    "angular2",
+    "log",
+    "log service",
+    "logging",
+    "log module",
+    "log4net"
+  ],
+  "author": "unisoftapps",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/unisoftapps/ng2-log-service/issues"
+  },
+  "homepage": "https://github.com/unisoftapps/ng2-log-service",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "scripts": {
