@@ -6,7 +6,6 @@
         "target": "ES5",
         "lib": ["dom", "es6"],
         "emitDecoratorMetadata": true,
-        "declaration": true,
         "experimentalDecorators": true,
         "allowJs": true,
         "sourceMap": false,
