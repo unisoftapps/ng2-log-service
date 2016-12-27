@@ -8,7 +8,6 @@ Thumbs.db
 
 
 # Ignore files
-*.d.ts
 *.log
 *.tgz
 
