@@ -104,6 +104,11 @@ export class LandingPage implements OnInit {
 ```
 Every time you log with the logService, it will find any registered subscribers and notify them by calling the ```onLog``` method.
 
+## Chrome Extension
+
+There is a free Chrome Extension for ng2-log-service. Learn more here: [https://github.com/unisoftapps/ng2-log-service-extension](https://github.com/unisoftapps/ng2-log-service-extension)
+
+
 ## Licensing
 
 This software is licensed with the MIT license.

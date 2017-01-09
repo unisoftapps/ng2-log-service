@@ -10,6 +10,10 @@ We do however provide a ConsoleListener you can use out of the box to log to the
 
 When you call a method on the LogService, nothing actually happens, unless you register a Log Listener that is configrued accordingly to respond to a log service event.
 
+### Chrome Extension
+
+There is a free Chrome Extension for ng2-log-service. Learn more here: [https://github.com/unisoftapps/ng2-log-service-extension](https://github.com/unisoftapps/ng2-log-service-extension)
+
 ## Setting up a Listener
 
 The first thing you must do is create a Log Listener. A Log Listener must implement the ILogListener interface.
