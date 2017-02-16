@@ -143,6 +143,7 @@ import { MyCustomListener } from './listeners/my-custom-listener';
     LogModule
   ],
   providers: [
+    ConsoleListenerConfig,
     { provide: LOG_LISTENER, useClass: ConsoleListener, multi: true, deps: [ConsoleListenerConfig] },
   	{ provide: LOG_LISTENER, useClass: ExtensionListener, multi: true },
     { provide: LOG_LISTENER, useClass: MyCustomListener, multi: true },
