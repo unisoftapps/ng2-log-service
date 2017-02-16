@@ -38,8 +38,8 @@ export class MyCustomListener implements ILogListener {
 
 
 ```typescript
-// Include the LogModule and bundled Console Listener
-import { LogModule, ConsoleListener } from 'ng2-log-service';
+import { LogModule, ConsoleListener, ExtensionListener, LOG_LISTENER, ConsoleListenerConfig } from 'ng2-log-service';
+
 // Import Your Log Listeners you want to register
 import { MyCustomListener } from './listeners/my-custom-listener';
 
@@ -51,9 +51,13 @@ import { MyCustomListener } from './listeners/my-custom-listener';
     BrowserModule,
     FormsModule,
     HttpModule,
-    LogModule.forRoot(new ConsoleListener(), new MyCustomListener())
+    LogModule
   ],
-  providers: [],
+  providers: [
+    { provide: LOG_LISTENER, useClass: ConsoleListener, multi: true, deps: [ConsoleListenerConfig] },
+  	{ provide: LOG_LISTENER, useClass: ExtensionListener, multi: true },
+    { provide: LOG_LISTENER, useClass: MyCustomListener, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
@@ -62,13 +66,13 @@ export class AppModule { }
 ### 3. Use the Log Service ###
 
 ```typescript
-import { logServiceProvider, LogService, LogLevel, ILogMessage } from 'ng2-log-service';
+import { LogService, LogLevel, ILogMessage } from 'ng2-log-service';
 
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.html',
   styleUrls: ['./landing-page.scss'],
-  providers: [logServiceProvider] // Inject the logServiceProvider
+  providers: [LogService] // Inject the LogService
 })
 export class LandingPage implements OnInit {
   

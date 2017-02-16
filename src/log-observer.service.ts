@@ -1,11 +1,12 @@
 import { AsyncSubject } from 'rxjs';
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, OpaqueToken } from '@angular/core';
 import { ILogObserver, ILogEvent, ILogListener, LogLevel, namespaceIsValid } from './ng2-log-service';
 
 let FUZZY_CHARACTER: string = '*';
 let INDEX_NOT_FOUND = -1;
-export let ALL: string = FUZZY_CHARACTER;
 
+export let ALL: string = FUZZY_CHARACTER;
+export let LOG_LISTENER = new OpaqueToken('LogListener');
 
 @Injectable()
 export class LogObserverService implements ILogObserver {
@@ -13,7 +14,7 @@ export class LogObserverService implements ILogObserver {
   private registry: { [namespace: string]: Array<ILogListener> };
   private listeners: Array<ILogListener> = [];
 
-  constructor(args: Array<ILogListener> = [] ) {
+  constructor(@Inject(LOG_LISTENER) private args: ILogListener[] = [] ) {
 
     this.registry = {}
     this.registry[ALL] = [];

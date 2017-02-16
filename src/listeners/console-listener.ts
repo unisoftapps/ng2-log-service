@@ -5,13 +5,13 @@ export interface IConsoleListenerPrefix {
     () : string;
 }
 
-export interface IConsoleConfig {
-    prefixLogsWithNamespace?: boolean;
-    namespaceWhiteList?: Array<string>;
-    enabled?: boolean;
-    logLevel?: LogLevel;
-    prefix?: IConsoleListenerPrefix;
-    enablePrefix?: boolean;
+export class ConsoleListenerConfig {
+    prefixLogsWithNamespace: boolean = true;
+    namespaceWhiteList: Array<string> = [ALL];
+    enabled: boolean = true;
+    logLevel: LogLevel;
+    prefix: IConsoleListenerPrefix;
+    enablePrefix: boolean = false;
 }
 
 let defaultConfig = {
@@ -30,18 +30,18 @@ export class ConsoleListener implements ILogListener {
     namespace = ALL;
     level = LogLevel.All;
 
-    constructor(private config: IConsoleConfig = defaultConfig) {
+    constructor(private config: ConsoleListenerConfig) {
         // merge default config with config 
         this.setConfig(config);
     }
 
-    setConfig(config: IConsoleConfig) {
+    setConfig(config: ConsoleListenerConfig) {
         this.config = Object.assign(defaultConfig, config);
         this.level = this.config.logLevel;
     }
 
     // returns copy of config
-    getConfig() : IConsoleConfig {
+    getConfig() : ConsoleListenerConfig {
         return Object.assign({}, this.config);
     }
 

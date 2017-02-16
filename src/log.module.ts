@@ -7,21 +7,7 @@ import { LogObserverService, ILogListener } from './ng2-log-service';
   exports: [
   ],
   providers: [
+      LogObserverService
   ]
 })
-export class LogModule {
-
-    static forRoot(...args: ILogListener[]) : ModuleWithProviders {
-        return {
-            ngModule: LogModule,
-            providers: [
-                {
-                    provide:LogObserverService,
-                    useFactory: () : LogObserverService => {
-                        return new LogObserverService(args);
-                    }
-                }
-            ]        
-        }
-    }
-}
+export class LogModule {}

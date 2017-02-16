@@ -123,13 +123,13 @@ My logMessage object would look like this:
 ## Registering Listeners with LogModule
 
 You must register your Log Listeners inside your Application's root module. 
-In this example, we will show how you would register the bundled ConsoleListener along with a user defined listener.
+In this example, we will show how you would register the bundled ConsoleListener and ExtensionListener along with a user defined listener.
+
 
 ```typescript
-// Include the LogModule and Bundled ConsoleListener
-import { LogModule, ConsoleListener } from 'ng2-log-service';
+import { LogModule, ConsoleListener, ExtensionListener, LOG_LISTENER, ConsoleListenerConfig } from 'ng2-log-service';
 
-// Include your own listener
+// Import Your Log Listeners you want to register
 import { MyCustomListener } from './listeners/my-custom-listener';
 
 @NgModule({
@@ -140,10 +140,13 @@ import { MyCustomListener } from './listeners/my-custom-listener';
     BrowserModule,
     FormsModule,
     HttpModule,
-    // You can register as many listeners as you want here
-    LogModule.forRoot(new ConsoleListener(), new MyCustomListener())
+    LogModule
   ],
-  providers: [],
+  providers: [
+    { provide: LOG_LISTENER, useClass: ConsoleListener, multi: true, deps: [ConsoleListenerConfig] },
+  	{ provide: LOG_LISTENER, useClass: ExtensionListener, multi: true },
+    { provide: LOG_LISTENER, useClass: MyCustomListener, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
@@ -155,17 +158,16 @@ Now that everything is wired up, start using the LogService.
 
 ### How to use the LogService inside of a Component
 
-Make sure you include the ```logServiceProvider``` inside your component. This will give you a new instance of a Log Service. This is done so you can have different namespaces defined within your application. You could inject a logServiceProvider into a module so everything in that module will share the same LogService instance.
-
+Make sure you include the ```LogService``` inside your component. This will give you a new instance of a LogService. This is done so you can have different namespaces defined within your application. You could inject a LogService into a module so everything in that module will share the same LogService instance.
 
 ```typescript
-import { logServiceProvider, LogService, LogLevel, ILogMessage } from 'ng2-log-service';
+import { LogService, LogLevel, ILogMessage } from 'ng2-log-service';
 
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.html',
   styleUrls: ['./landing-page.scss'],
-  providers: [logServiceProvider] // Inject the logServiceProvider
+  providers: [LogService] // Inject the LogService
 })
 export class LandingPage implements OnInit {
   
