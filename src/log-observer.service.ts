@@ -6,7 +6,7 @@ let FUZZY_CHARACTER: string = '*';
 let INDEX_NOT_FOUND = -1;
 
 export let ALL: string = FUZZY_CHARACTER;
-export let LOG_LISTENER = new OpaqueToken('LogListener');
+export let LOG_LISTENER: OpaqueToken = new OpaqueToken('LogListener');
 
 @Injectable()
 export class LogObserverService implements ILogObserver {
@@ -81,7 +81,7 @@ export class LogObserverService implements ILogObserver {
   }
 
   private exactListenersToNotify(namespace: string, level: LogLevel) : Array<ILogListener> {
-    var listeners = [];
+    var listeners: Array<ILogListener> = [];
 
     if(this.namespaceInRegistry(namespace)) {
       listeners = this.extractQualifiedListenersForLogLevel(this.registry[namespace], level);
@@ -91,7 +91,7 @@ export class LogObserverService implements ILogObserver {
   }
 
   private extractQualifiedListenersForLogLevel(listeners: Array<ILogListener>, level: LogLevel) : Array<ILogListener> {
-    var qualifiedListeners = [];
+    var qualifiedListeners: Array<ILogListener> = [];
     listeners.forEach((listener) => {
       if(level >= listener.level) {
         qualifiedListeners.push(listener);
@@ -102,7 +102,7 @@ export class LogObserverService implements ILogObserver {
   }
 
   private fuzzyListenersToNotify(namespace: string, level: LogLevel ) : Array<ILogListener> {
-    var listeners = [];
+    var listeners: Array<ILogListener> = [];
     Object.keys(this.registry).forEach((key) => {
       if(key.indexOf(FUZZY_CHARACTER) !== INDEX_NOT_FOUND) {
         if(key === FUZZY_CHARACTER) {
@@ -119,7 +119,7 @@ export class LogObserverService implements ILogObserver {
   };
 
   protected listenersToNotify(namespace: string, level: LogLevel) : Array<ILogListener> {
-    var listeners = [];
+    var listeners: Array<ILogListener> = [];
     // exact match listeners that qualify
     if(this.namespaceInRegistry(namespace)) {
       listeners = this.exactListenersToNotify(namespace, level);

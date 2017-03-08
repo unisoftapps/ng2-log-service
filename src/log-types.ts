@@ -10,11 +10,11 @@ export enum LogLevel {
 }
 
 export interface ILog {
-  log(arg: string, obj: any, level: LogLevel);
-  error(arg: string, obj: any, level: LogLevel);
-  warn(arg: string, obj: any, level: LogLevel);
-  info(arg: string, obj: any, level: LogLevel);
-  debug(arg: string, obj: any, level: LogLevel);
+  log(arg: string, obj: any, level: LogLevel) : void;
+  error(arg: string, obj: any, level: LogLevel) : void;
+  warn(arg: string, obj: any, level: LogLevel) : void;
+  info(arg: string, obj: any, level: LogLevel) : void;
+  debug(arg: string, obj: any, level: LogLevel) : void;
 };
 
 export interface ILogEvent {
@@ -27,18 +27,18 @@ export interface ILogMessage {
 }
 
 export interface ILogMessager {
-  messageSent(message: string, payload?: any);
+  messageSent(message: string, payload?: any) : void;
 }
 
 export abstract class ILogListener {
   namespace: string = ALL;
   level: LogLevel;
-  abstract onLog(namespace: string, level: LogLevel, logMessage: ILogMessage);
+  abstract onLog(namespace: string, level: LogLevel, logMessage: ILogMessage) : void;
 }
 
 export interface ILogObserver {
-  onDidLog(namespace: string, level: LogLevel, action: ILogEvent);
-  register(listener: ILogListener);
-  getListener(listener: Function);
+  onDidLog(namespace: string, level: LogLevel, action: ILogEvent) : void;
+  register(listener: ILogListener) : void;
+  getListener(listener: Function) : void;
 }
 

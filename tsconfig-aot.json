@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": ["es2015", "dom"],
+    "noImplicitAny": true,
+    "declaration": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "outDir": "dist"
+  },
+
+  "files": [
+    "src/ng2-log-service.ts"
+  ],
+
+  "angularCompilerOptions": {
+    "genDir": "aot",
+    "skipMetadataEmit" : false
+  }
+}
