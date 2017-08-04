@@ -31,7 +31,7 @@
     "prepublish": "npm run aot"
   },
   "peerDependencies": {
-    "@angular/core": "^2.0.0"
+    "@angular/core": ">=2.0.0"
   },
   "devDependencies": {
     "@angular/common": "^2.0.0",
